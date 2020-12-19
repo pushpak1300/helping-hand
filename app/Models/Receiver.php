@@ -55,7 +55,7 @@ class Receiver extends Model
     use HasFactory;
 
     public $table = 'receivers';
-    
+
     protected $dates = ['deleted_at'];
 
     public $fillable = [
@@ -76,6 +76,17 @@ class Receiver extends Model
         'user_id' => 'integer'
     ];
 
+    public function toArray()
+    {
+        return [
+            'id' => $this->user->id,
+            'age' => $this->age,
+            'city' => $this->merchant->city,
+            'name' => $this->user->name,
+            'avtar' => 'https://i.pravatar.cc/300'
+        ];
+    }
+
     /**
      * Validation rules
      *
@@ -85,5 +96,14 @@ class Receiver extends Model
         'age' => 'required numeric'
     ];
 
-    
+    public function merchant()
+    {
+        return $this->belongsTo(Merchant::class, 'merchants_by');
+    }
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Bavix\Wallet\Traits\HasWallet;
+use Bavix\Wallet\Interfaces\Wallet;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Wallet
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory, Notifiable, HasApiTokens,HasWallet;
 
     /**
      * The attributes that are mass assignable.
@@ -40,9 +42,9 @@ class User extends Authenticatable
         return $this->transactions->count();
     }
 
-    public function transactions()
+    public function transaction()
     {
-        return $this->hasMany(Transaction::class, 'user_or_merchant_id');
+        return $this->hasMany(Dealings::class, 'user_or_merchant_id');
     }
 
     /**

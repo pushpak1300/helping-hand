@@ -54,13 +54,13 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
  *      )
  * )
  */
-class Transaction extends EloquentModel
+class Dealings extends EloquentModel
 {
     use SoftDeletes;
 
     use HasFactory;
 
-    public $table = 'transactions';
+    public $table = 'dealings';
     
 
     protected $dates = ['deleted_at'];

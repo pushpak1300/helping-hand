@@ -95,5 +95,10 @@ class Merchant extends EloquentModel
         'city' => 'string required'
     ];
 
+    public function recievers()
+    {
+        return $this->hasMany(Receiver::class, 'merchants_by');
+    }
+
     
 }
