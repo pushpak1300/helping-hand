@@ -13,7 +13,7 @@
 
     <div class="table-responsive">
       <base-table thead-classes="thead-light"
-                  :data="tableData">
+                  :data="donations">
         <template slot="columns">
           <th>Donated to</th>
           <th>Amount</th>
@@ -22,13 +22,13 @@
 
         <template slot-scope="{row}">
           <th scope="row">
-            {{row.user}}
+            {{row.reciever_id}}
           </th>
           <td>
             {{row.amount}}
           </td>
           <td>
-            {{row.donated_at}}
+            {{new Date(row.created_at).toString().split('GMT')[0]}}
           </td>
           <!-- <td>
             <i class="fas fa-arrow-up text-success mr-3"
@@ -46,6 +46,7 @@
 <script>
   export default {
     name: 'page-visits-table',
+    props: ['donations'],
     data() {
       return {
         tableData: [

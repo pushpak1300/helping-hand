@@ -9,13 +9,13 @@
         <sidebar-item
           :link="{
             name: 'Dashboard',
-            icon: 'ni ni-tv-2 text-primary',
+            icon: 'ni ni-tv-2 text-default',
             path: '/dashboard'
           }"
         />
 
-        <sidebar-item :link="{name: 'Payment', icon: 'ni ni-planet text-blue', path: '/payment'}"/>
-        <sidebar-item :link="{name: 'Generate QR Code', icon: 'ni ni-single-02 text-yellow', path: '/profile'}"/>
+        <sidebar-item :link="{name: 'Payment', icon: 'ni ni-shop text-default', path: '/payment'}"/>
+        <sidebar-item :link="{name: 'Generate QR gode', icon: 'ni ni-single-02 text-default', path: '/profile'}"/>
 
       </template>
     </side-bar>

@@ -15,5 +15,9 @@ export default {
 
   auth() {
     return Api().get("/user");
+  },
+
+  getDashboard() {
+    return Api().get("/dashboard");
   }
 };
