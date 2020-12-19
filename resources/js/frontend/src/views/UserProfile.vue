@@ -30,29 +30,20 @@
                         ></div>
                         <div class="card-body pt-md-7">
                             <div class="text-center ">
-                                <h2>
+                                <h2 class="mb-0">
                                     {{ profile.name }}
-                                    <span class="font-weight-light"
-                                        >, {{ profile.age }}</span
-                                    >
+                                    <span class="font-weight-light">, {{ profile.age }}</span>
                                 </h2>
-                                <div class="h3 font-weight-300">
-                                    <i class="ni location_pin mr-2"></i
-                                    >{{ profile.city }}
+                                <div class="h3 font-weight-300 mt-0" >
+                                   {{ profile.city }}
                                 </div>
-                                <div class="h2 mt-3">
-                                    <i class="ni business_briefcase-24 mr-2"></i
-                                    >Created by
+                                <div class="h5 mt-3 mb-0">
+                                    Created by
                                 </div>
                                 <div v-if="profile.shopName">
-                                    <i class="ni education_hat mr-2"></i
-                                    >{{ profile.shopName }}
+                                    {{ profile.shopName }}
                                 </div>
-                                <div>
-                                    <i
-                                        class="ni education_hat font-bold mr-2"
-                                    ></i>
-                                    {{ profile.city }}
+                                <div class="h3 mt-0"> {{ profile.city }}
                                 </div>
                                 <div v-if="profile.balance">
                                     <i class="ni education_hat mr-2"></i
