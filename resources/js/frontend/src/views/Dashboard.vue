@@ -6,7 +6,7 @@
                 <div class="col-xl-6 col-lg-6">
                     <stats-card title="Total Donations"
                                 type="gradient-red"
-                                sub-title="20"
+                                :sub-title="totalDonations"
                                 icon="ni ni-active-40"
                                 class="mb-4 mb-xl-0"
                     >
@@ -34,7 +34,7 @@
                 <div class="col-xl-6 col-lg-6">
                     <stats-card title="Total Amount Donated"
                                 type="gradient-green"
-                                sub-title="2,780"
+                                :sub-title="totalAmount"
                                 icon="ni ni-money-coins"
                                 class="mb-4 mb-xl-0"
                     >
@@ -130,7 +130,7 @@
             <!--Tables-->
             <div class="row mt-5">
                 <div class="col-xl-12 mb-5 mb-xl-0">
-                    <page-visits-table></page-visits-table>
+                    <page-visits-table :donations="donations"></page-visits-table>
                 </div>
                 <!-- <div class="col-xl-4">
                     <social-traffic-table></social-traffic-table>
@@ -148,6 +148,8 @@
 
   // Tables
   import PageVisitsTable from './Dashboard/PageVisitsTable';
+
+  import User from "../api/User";
 
   export default {
     components: {
@@ -176,7 +178,10 @@
               data: [25, 20, 30, 22, 17, 29]
             }]
           }
-        }
+        },
+        totalDonations: "",
+        totalAmount: "",
+        donations: []
       };
     },
     methods: {
@@ -192,10 +197,23 @@
         };
         this.bigLineChart.chartData = chartData;
         this.bigLineChart.activeIndex = index;
+      },
+      getTotalAmount(donations) {
+        var sum = 0;
+        for ( var index in donations) {
+          sum += parseFloat(donations[index].amount);
+          // console.log(donation);
+        }
+        return sum;
       }
     },
     mounted() {
       this.initBigChart(0);
+      User.getDashboard().then(response => {
+        this.totalDonations = response.data.totalTranasaction.toString();
+        this.totalAmount = this.getTotalAmount(response.data.transaction).toString();
+        this.donations = response.data.transaction;
+      });
     }
   };
 </script>

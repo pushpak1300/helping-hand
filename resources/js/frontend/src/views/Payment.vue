@@ -14,7 +14,7 @@
             </div>
         </base-header>
 
-        <div class="container-fluid mt--7">
+        <div class="container-fluid mt--3">
             <div class="row">
                 <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
 
