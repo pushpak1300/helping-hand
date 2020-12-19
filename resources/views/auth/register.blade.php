@@ -44,12 +44,12 @@
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">@</span>
+                                <span class="input-group-text">+91</span>
                             </div>
-                            <input type="email" class="form-control {{ $errors->has('email')?'is-invalid':'' }}" name="email" value="{{ old('email') }}" placeholder="Email">
-                            @if ($errors->has('email'))
+                            <input type="mobile" class="form-control {{ $errors->has('mobile')?'is-invalid':'' }}" name="mobile" value="{{ old('mobile') }}" placeholder="mobile">
+                            @if ($errors->has('mobile'))
                                 <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('email') }}</strong>
+                                    <strong>{{ $errors->first('mobile') }}</strong>
                                 </span>
                             @endif
                         </div>
