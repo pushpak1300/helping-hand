@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Auth;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -13,9 +13,8 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'mobile' => 'required|string|size:10|unique:users,mobile',
+            'mobile' => 'required|string|size:10',
             'password' => 'required',
-            'device_name' => 'required'
         ]);
 
         $user = User::where('mobile', $request->mobile)->first();
@@ -25,8 +24,8 @@ class LoginController extends Controller
                 'mobile' => ['The provided credentials are incorrect.'],
             ]);
         }
-
-        return $user->createToken($request->device_name)->plainTextToken;
+        
+        return ['token' => $user->createToken($request->header('User-Agent'))->plainTextToken];
     }
 
     public function logout(Request $request)

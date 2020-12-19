@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Auth;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -13,14 +13,18 @@ class RegisterController extends Controller
     {
         $request->validate([
             'name' => ['required'],
-            'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:8', 'confirmed']
+            'mobile' => ['required',  'unique:users'],
+            'password' => ['required', 'min:8']
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'mobile' => $request->mobile,
             'password' => Hash::make($request->password)
         ]);
+
+        $token = $user->createToken('default');
+
+        return ['token' => $token->plainTextToken];
     }
 }
