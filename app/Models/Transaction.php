@@ -5,6 +5,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 /**
  * @SWG\Definition(
@@ -53,7 +54,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *      )
  * )
  */
-class Transaction extends Model
+class Transaction extends EloquentModel
 {
     use SoftDeletes;
 
@@ -64,7 +65,15 @@ class Transaction extends Model
 
     protected $dates = ['deleted_at'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_or_merchant_id');
+    }
 
+    public function reciever()
+    {
+        return $this->belongsTo(User::class, 'reciever_id');
+    }
 
     public $fillable = [
         'user_or_merchant_id',
