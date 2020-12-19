@@ -26,8 +26,8 @@
             </div>
         </base-header>
         <div class="container-fluid mt--7">
-            <div class="row">
-                <div class="col-xl-12">
+            
+                <div class="shadow  px-0 col-xl-12">
                     <card header-classes="bg-transparent">
                         <div slot="header" class="row align-items-center">
                             <div class="col">
@@ -45,7 +45,7 @@
                         >
                         </bar-chart>
                     </card>
-                </div>
+                
             </div>
             <!-- End charts-->
 
