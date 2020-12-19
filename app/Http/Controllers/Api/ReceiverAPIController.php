@@ -8,7 +8,11 @@ use App\Models\Receiver;
 use App\Repositories\ReceiverRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Merchant;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Response;
+use Illuminate\Support\Str;
 
 /**
  * Class ReceiverController
@@ -106,13 +110,27 @@ class ReceiverAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateReceiverAPIRequest $request)
+    public function store(Request $request)
     {
+        if ($request->user()->isUser()) {
+            return $this->sendError('Unauthorised', 401);
+        }
         $input = $request->all();
-
-        $receiver = $this->receiverRepository->create($input);
-
-        return $this->sendResponse($receiver->toArray(), 'Receiver saved successfully');
+        $user = User::create([
+            'name' => $input['name'],
+            'mobile' => Str::random(4),
+            'password' => Hash::make('paswsword'),
+            'role' => 'reciever'
+        ]);
+        $receiver = Receiver::Create([
+            'age' => $input['age'],
+            'merchants_by' => Merchant::where('user_id', $request->user()->id)->first()->id,
+            'user_id' => $user->id
+        ]);
+        $data = $receiver->toArray();
+        $data['pin'] = $user->mobile;
+        $data['wallet'] = $user->balance;
+        return $this->sendResponse($data, 'Receiver saved successfully');
     }
 
     /**
@@ -153,16 +171,20 @@ class ReceiverAPIController extends AppBaseController
      *      )
      * )
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
         /** @var Receiver $receiver */
-        $receiver = $this->receiverRepository->find($id);
+        $receiver = Receiver::where('user_id', $id)->first();
 
         if (empty($receiver)) {
             return $this->sendError('Receiver not found');
         }
-
-        return $this->sendResponse($receiver->toArray(), 'Receiver retrieved successfully');
+        if ($request->user()->isUser()) {
+            return $this->sendResponse($receiver->toArray(), 'Receiver retrieved successfully');
+        }
+        $data = $receiver->toArray();
+        $data['wallet'] = $receiver->user->balance;
+        return $this->sendResponse($data, 'Receiver retrieved successfully');
     }
 
     /**
@@ -170,7 +192,7 @@ class ReceiverAPIController extends AppBaseController
      * @param UpdateReceiverAPIRequest $request
      * @return Response
      *
-     * @SWG\Put(
+     * @SWG\Post(
      *      path="/receivers/{id}",
      *      summary="Update the specified Receiver in storage",
      *      tags={"Receiver"},
@@ -211,20 +233,26 @@ class ReceiverAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateReceiverAPIRequest $request)
+    public function add($id, Request $request)
     {
-        $input = $request->all();
-
-        /** @var Receiver $receiver */
-        $receiver = $this->receiverRepository->find($id);
-
-        if (empty($receiver)) {
+        $amount = $request->amount;
+        /** @var User $user */
+        $user = User::find($id);
+        if (empty($user)) {
             return $this->sendError('Receiver not found');
         }
+        if ($request->user()->isUser()) {
 
-        $receiver = $this->receiverRepository->update($input, $id);
+            $user->deposit($amount);
 
-        return $this->sendResponse($receiver->toArray(), 'Receiver updated successfully');
+            return $this->sendResponse(true, 'Money donated Sucessfully');
+        }
+        if ($user->balance < $amount) {
+            return $this->sendError('Insuffiecient Balance', 200);
+        }
+        $user->withdraw($amount);
+
+        return $this->sendResponse($user->toArray(), 'Money withdraw Sucessfully');
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Receiver;
+use App\Models\User;
 use App\Repositories\BaseRepository;
 
 /**
@@ -36,5 +37,10 @@ class ReceiverRepository extends BaseRepository
     public function model()
     {
         return Receiver::class;
+    }
+
+    public function findById(int $id)
+    {
+        return User::find($id)->first();
     }
 }
