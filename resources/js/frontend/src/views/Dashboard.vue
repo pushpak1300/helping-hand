@@ -129,14 +129,14 @@
             <!-- End charts-->
 
             <!--Tables-->
-            <div class="row mt-5">
-                <div class="col-xl-12 mb-5 mb-xl-0">
+            <!-- <div  class=" bg-primary row mt-5 "> -->
+                <div class=" shadow col-xl-12 mb-5 px-0 mt-5 mb-xl-0">
                     <page-visits-table :donations="donations"></page-visits-table>
                 </div>
                 <!-- <div class="col-xl-4">
                     <social-traffic-table></social-traffic-table>
                 </div> -->
-            </div>
+            
             <!--End tables-->
         </div>
 

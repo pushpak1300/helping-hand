@@ -54,21 +54,16 @@
                                 </div>
                             </div> -->
                             <div class="text-center ">
-                                <h3>
+                                <h2>
                                     Jessica Jones<span class="font-weight-light">, 27</span>
-                                </h3>
-                                <div class="h5 font-weight-300">
-                                    <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                                </h2>
+                                <div class="h5 mb-4">
+                                   Bucharest, Romania
                                 </div>
-                                <div class="h5 mt-4">
-                                    <i class="ni business_briefcase-24 mr-2"></i>Created by
+                                <div class="h5 font-weight-300">Created by
                                 </div>
-                                <div>
-                                    <i class="ni education_hat mr-2"></i>Gmart
-                                </div>
-                                <div>
-                                    <i class="ni education_hat mr-2"></i>at Mumbai
-                                </div>
+                                <h3 class = "mb-0">Gmart</h3>
+                                <h3>at Mumbai</h3>
                                 <!-- <hr class="my-4" />
                                 <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
                                 <a href="#">Show more</a> -->
@@ -117,7 +112,7 @@
                                      </div>
                                  </div>
                                  <div class="text-center mt-2">
-                                     <button @click="showProfile" class="btn btn-sm btn-primary">Generate</button>
+                                     <button @click="showProfile" class="btn btn-md btn-primary">Generate</button>
                                  </div>
                              </form>
                         </template>

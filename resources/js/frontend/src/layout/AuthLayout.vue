@@ -1,15 +1,15 @@
 <template>
     <div class="main-content bg-default">
         <!-- Navbar -->
-        <base-nav class="navbar-top navbar-horizontal navbar-dark"
+        <base-nav class="navbar-top navbar-horizontal"
                   containerClasses="px-4 container"
-                  expand>
+                  >
             <router-link slot="brand" class="navbar-brand" to="/">
                 <img src="img/brand/white.png"/>
             </router-link>
 
-            <template v-slot="{closeMenu}">
-                <!-- Collapse header -->
+            <!-- <template v-slot="{closeMenu}">
+                <! Collapse header --
                 <div class="navbar-collapse-header d-md-none">
                     <div class="row">
                         <div class="col-6 collapse-brand">
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Navbar items -->
+                <! Navbar items -->
                 <!-- <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <router-link class="nav-link nav-link-icon" to="/">
@@ -54,11 +54,11 @@
                             <span class="nav-link-inner--text">Profile</span>
                         </router-link>
                     </li>
-                </ul> -->
-            </template>
+                </ul> --
+            </template> -->
         </base-nav>
         <!-- Header -->
-        <div class="header bg-gradient-success py-7 py-lg-8">
+        <div class="header bg-gradient-secondary py-7 py-lg-8">
             <div class="separator separator-bottom separator-skew zindex-100">
                 <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
                      xmlns="http://www.w3.org/2000/svg">

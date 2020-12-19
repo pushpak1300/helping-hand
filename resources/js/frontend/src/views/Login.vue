@@ -38,7 +38,7 @@
                             </FormulateInput>
 
                             <div class="text-center">
-                                <FormulateInput type="submit" label="Sign In" class="my-4" />
+                                <FormulateInput type="submit" label="Log In" class="my-4" />
                             </div>
                         </FormulateForm>
                     </div>
