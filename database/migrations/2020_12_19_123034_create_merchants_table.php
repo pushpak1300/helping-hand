@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReceiversTable extends Migration
+class CreateMerchantsTable extends Migration
 {
 
     /**
@@ -14,14 +14,14 @@ class CreateReceiversTable extends Migration
      */
     public function up()
     {
-        Schema::create('receivers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('age');
-            $table->unsignedBigInteger('merchants_by');
+        Schema::create('merchants', function (Blueprint $table) {
+            $table->id();
+            $table->string('shop_name');
+            $table->string('city');
+            $table->enum('shop_type', ['groceries','food','cloths']);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('merchants_by')->references('id')->on('merchants');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
@@ -33,6 +33,6 @@ class CreateReceiversTable extends Migration
      */
     public function down()
     {
-        Schema::drop('receivers');
+        Schema::drop('merchants');
     }
 }

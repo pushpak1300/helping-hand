@@ -15,3 +15,7 @@ Route::post('/login', [LoginController::class,'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum');
 
 Route::resource('receivers', App\Http\Controllers\Api\ReceiverAPIController::class);
+
+Route::resource('merchants', App\Http\Controllers\Api\MerchantAPIController::class);
+
+Route::resource('transactions', App\Http\Controllers\Api\TransactionAPIController::class);

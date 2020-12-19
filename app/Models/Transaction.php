@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * @SWG\Definition(
- *      definition="Receiver",
- *      required={"age"},
+ *      definition="Transaction",
+ *      required={""},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -17,22 +17,27 @@ use Illuminate\Database\Eloquent\Model;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="age",
- *          description="age",
+ *          property="user_or_merchant_id",
+ *          description="user_or_merchant_id",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="created_by",
- *          description="created_by",
+ *          property="reciever_id",
+ *          description="reciever_id",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="user_id",
- *          description="user_id",
+ *          property="amount",
+ *          description="amount",
  *          type="integer",
  *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="type",
+ *          description="type",
+ *          type="string"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -48,20 +53,24 @@ use Illuminate\Database\Eloquent\Model;
  *      )
  * )
  */
-class Receiver extends Model
+class Transaction extends Model
 {
     use SoftDeletes;
 
     use HasFactory;
 
-    public $table = 'receivers';
+    public $table = 'transactions';
     
+
     protected $dates = ['deleted_at'];
 
+
+
     public $fillable = [
-        'age',
-        'created_by',
-        'user_id'
+        'user_or_merchant_id',
+        'reciever_id',
+        'amount',
+        'type'
     ];
 
     /**
@@ -71,9 +80,10 @@ class Receiver extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'age' => 'integer',
-        'created_by' => 'integer',
-        'user_id' => 'integer'
+        'user_or_merchant_id' => 'integer',
+        'reciever_id' => 'integer',
+        'amount' => 'integer',
+        'type' => 'string'
     ];
 
     /**
@@ -82,7 +92,7 @@ class Receiver extends Model
      * @var array
      */
     public static $rules = [
-        'age' => 'required numeric'
+        'amount' => 'numeric'
     ];
 
     

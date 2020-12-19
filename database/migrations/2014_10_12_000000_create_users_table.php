@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('mobile')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->enum('role', ['user', 'reciever', 'merchant'])->default('user');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

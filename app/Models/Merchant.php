@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * @SWG\Definition(
- *      definition="Receiver",
- *      required={"age"},
+ *      definition="Merchant",
+ *      required={"shop_name", "city"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -17,16 +17,19 @@ use Illuminate\Database\Eloquent\Model;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="age",
- *          description="age",
- *          type="integer",
- *          format="int32"
+ *          property="shop_name",
+ *          description="shop_name",
+ *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="created_by",
- *          description="created_by",
- *          type="integer",
- *          format="int32"
+ *          property="city",
+ *          description="city",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="shop_type",
+ *          description="shop_type",
+ *          type="string"
  *      ),
  *      @SWG\Property(
  *          property="user_id",
@@ -48,19 +51,23 @@ use Illuminate\Database\Eloquent\Model;
  *      )
  * )
  */
-class Receiver extends Model
+class Merchant extends Model
 {
     use SoftDeletes;
 
     use HasFactory;
 
-    public $table = 'receivers';
+    public $table = 'merchants';
     
+
     protected $dates = ['deleted_at'];
 
+
+
     public $fillable = [
-        'age',
-        'created_by',
+        'shop_name',
+        'city',
+        'shop_type',
         'user_id'
     ];
 
@@ -71,8 +78,9 @@ class Receiver extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'age' => 'integer',
-        'created_by' => 'integer',
+        'shop_name' => 'string',
+        'city' => 'string',
+        'shop_type' => 'string',
         'user_id' => 'integer'
     ];
 
@@ -82,7 +90,8 @@ class Receiver extends Model
      * @var array
      */
     public static $rules = [
-        'age' => 'required numeric'
+        'shop_name' => 'string required',
+        'city' => 'string required'
     ];
 
     

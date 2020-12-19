@@ -33,3 +33,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::resource('receivers', App\Http\Controllers\ReceiverController::class);
+
+Route::resource('merchants', App\Http\Controllers\MerchantController::class);
+
+Route::resource('transactions', App\Http\Controllers\TransactionController::class);
