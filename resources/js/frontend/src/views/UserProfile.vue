@@ -14,9 +14,9 @@
             </div>
         </base-header>
 
-        <div class="container-fluid mt--3">
+        <div   class="container-fluid mt--7">
             <div class="row">
-                <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+                <div v-show="visible" class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
 
                     <div class="card card-profile shadow">
                         <div class="row justify-content-center">
@@ -79,7 +79,7 @@
                      
                 </div>
                                                
-                <div class="col-xl-8 order-xl-1">
+                <div v-show="!visible" class="col-xl-8 order-xl-1">
                     <card shadow type="secondary">
                         <div slot="header" class="bg-white border-0">
                             <div class="row align-items-center">
@@ -117,7 +117,7 @@
                                      </div>
                                  </div>
                                  <div class="text-center mt-2">
-                                     <button class="btn btn-sm btn-primary">Generate</button>
+                                     <button @click="showProfile" class="btn btn-sm btn-primary">Generate</button>
                                  </div>
                              </form>
                         </template>
@@ -137,11 +137,17 @@ import VueQrcode from 'vue-qrcode'
         model: {
           name: '',
           age: ''
-        }
+        },
+        visible:false
       }
     },
     components: {
         VueQrcode,
+    },
+    methods:{
+        showProfile(){
+            this.visible = !this.visible
+        }
     }
   };
 </script>
