@@ -8,6 +8,7 @@ use App\Models\Receiver;
 use App\Repositories\ReceiverRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use App\Models\User;
 use Response;
 
 /**
@@ -153,16 +154,20 @@ class ReceiverAPIController extends AppBaseController
      *      )
      * )
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
         /** @var Receiver $receiver */
-        $receiver = $this->receiverRepository->find($id);
+        $receiver = Receiver::where('user_id', $id)->first();
 
         if (empty($receiver)) {
             return $this->sendError('Receiver not found');
         }
-
-        return $this->sendResponse($receiver->toArray(), 'Receiver retrieved successfully');
+        if ($request->user()->isUser()) {
+            return $this->sendResponse($receiver->toArray(), 'Receiver retrieved successfully');
+        }
+        $data = $receiver->toArray();
+        $data['wallet'] = $receiver->user->balance;
+        return $this->sendResponse($data, 'Receiver retrieved successfully');
     }
 
     /**
@@ -170,7 +175,7 @@ class ReceiverAPIController extends AppBaseController
      * @param UpdateReceiverAPIRequest $request
      * @return Response
      *
-     * @SWG\Put(
+     * @SWG\Post(
      *      path="/receivers/{id}",
      *      summary="Update the specified Receiver in storage",
      *      tags={"Receiver"},
@@ -211,20 +216,26 @@ class ReceiverAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateReceiverAPIRequest $request)
+    public function add($id, Request $request)
     {
-        $input = $request->all();
-
-        /** @var Receiver $receiver */
-        $receiver = $this->receiverRepository->find($id);
-
-        if (empty($receiver)) {
+        $amount = $request->amount;
+        /** @var User $user */
+        $user = User::find($id);
+        if (empty($user)) {
             return $this->sendError('Receiver not found');
         }
+        if ($request->user()->isUser()) {
+            
+            $user->deposit($amount);
 
-        $receiver = $this->receiverRepository->update($input, $id);
+            return $this->sendResponse(true, 'Money donated Sucessfully');
+        }
+        if ($user->balance < $amount) {
+            return $this->sendError('Insuffiecient Balance', 200);
+        }
+        $user->withdraw($amount);
 
-        return $this->sendResponse($receiver->toArray(), 'Receiver updated successfully');
+        return $this->sendResponse($user->toArray(), 'Money withdraw Sucessfully');
     }
 
     /**

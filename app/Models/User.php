@@ -11,7 +11,7 @@ use Bavix\Wallet\Interfaces\Wallet;
 
 class User extends Authenticatable implements Wallet
 {
-    use HasFactory, Notifiable, HasApiTokens,HasWallet;
+    use HasFactory, Notifiable, HasApiTokens, HasWallet;
 
     /**
      * The attributes that are mass assignable.
@@ -45,6 +45,21 @@ class User extends Authenticatable implements Wallet
     public function transaction()
     {
         return $this->hasMany(Dealings::class, 'user_or_merchant_id');
+    }
+
+    public function isUser()
+    {
+        return $this->role === 'user';
+    }
+    
+    public function isReciever()
+    {
+        return $this->role === 'reciever';
+    }
+
+    public function isMerchant()
+    {
+        return $this->role === 'merchant';
     }
 
     /**

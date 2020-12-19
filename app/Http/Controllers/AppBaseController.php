@@ -35,4 +35,5 @@ class AppBaseController extends Controller
             'message' => $message
         ], 200);
     }
+
 }

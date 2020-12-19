@@ -17,6 +17,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'dashboard']);
     Route::get('/recievers/{id}', [ReceiverAPIController::class, 'show']);
+    Route::post('/recievers/{id}', [ReceiverAPIController::class, 'add']);
 });
 
 
