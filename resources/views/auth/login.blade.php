@@ -68,6 +68,10 @@
                                 </div>
                             </div>
                         </form>
+                        <form>
+                            <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_GErhzoixxfNsQt">
+                            </script>
+                        </form>
                     </div>
                 </div>
                 <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
@@ -86,6 +90,7 @@
 </div>
 <!-- CoreUI and necessary plugins-->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@2.1.16/dist/js/coreui.min.js"></script>

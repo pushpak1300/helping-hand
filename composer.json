@@ -18,7 +18,9 @@
         "laravel/sanctum": "^2.8",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.0",
-        "laravelcollective/html": "^6.2"
+        "laravelcollective/html": "^6.2",
+        "appointer/swaggervel": "dev-master",
+        "infyomlabs/swagger-generator": "dev-master"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -50,6 +52,12 @@
             "Tests\\": "tests/"
         }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:InfyOmLabs/swaggervel.git"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {

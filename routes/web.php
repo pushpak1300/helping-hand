@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/webhook', function (Request $request) {
+    Log::info($request->all());
+});
+
+Route::post('/webhook', function (Request $request) {
+    Log::info($request->all());
 });
 
 Auth::routes();
@@ -24,3 +30,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::resource('receivers', App\Http\Controllers\ReceiverController::class);
