@@ -4,13 +4,6 @@
                      style="min-height: 100px; background-size: cover; background-position: center top;">
             <span class="mask bg-gradient-dark opacity-7"></span>
             <div class="container-fluid d-flex align-items-center">
-                <!-- <div class="row">
-                    <div class="col-lg-7 col-md-10">
-                        <h1 class="display-2 text-white">Hello Jesse</h1>
-                        <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
-                        <a href="#!" class="btn btn-info">Edit profile</a>
-                    </div>
-                </div> -->
             </div>
         </base-header>
 
@@ -29,30 +22,9 @@
                             </div>
                         </div>
                         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                            <!-- <div class="d-flex justify-content-between">
-                                <base-button size="sm" type="info" class="mr-4">Connect</base-button>
-                                <base-button size="sm" type="default" class="float-right">Message</base-button>
-                            </div> -->
+                           
                         </div>
                         <div class="card-body pt-md-7">
-                            <!-- <div class="row">
-                                <div class="col">
-                                    <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                                        <div>
-                                            <span class="heading">22</span>
-                                            <span class="description">Friends</span>
-                                        </div>
-                                        <div>
-                                            <span class="heading">10</span>
-                                            <span class="description">Photos</span>
-                                        </div>
-                                        <div>
-                                            <span class="heading">89</span>
-                                            <span class="description">Comments</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                             <div class="text-center ">
                                 <h3>
                                     Jessica Jones<span class="font-weight-light">, 27</span>
@@ -69,15 +41,10 @@
                                 <div>
                                     <i class="ni education_hat mr-2"></i>at Mumbai
                                 </div>
-                                <!-- <hr class="my-4" />
-                                <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
-                                <a href="#">Show more</a> -->
                             </div>
                         </div>
                     </div>
-                     
-                </div>
-                                               
+                </div>                     
                 <div class="col-xl-8 order-xl-1">
                     <card shadow type="secondary">
                         <div slot="header" class="bg-white border-0">
@@ -85,9 +52,6 @@
                                 <div class="col-8">
                                     <h3 class="mb-0">Proceed Payment</h3>
                                 </div>
-                                <!-- <div class="col-4 text-right">
-                                    <a href="#!" class="btn btn-sm btn-primary">Settings</a>
-                                </div> -->
                             </div>
                         </div>
                         <template>
