@@ -61,7 +61,8 @@ class Receiver extends Model
     public $fillable = [
         'age',
         'created_by',
-        'user_id'
+        'user_id',
+        'merchants_by'
     ];
 
     /**

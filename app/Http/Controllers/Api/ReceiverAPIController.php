@@ -8,8 +8,11 @@ use App\Models\Receiver;
 use App\Repositories\ReceiverRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Merchant;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Response;
+use Illuminate\Support\Str;
 
 /**
  * Class ReceiverController
@@ -107,13 +110,27 @@ class ReceiverAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateReceiverAPIRequest $request)
+    public function store(Request $request)
     {
+        if ($request->user()->isUser()) {
+            return $this->sendError('Unauthorised', 401);
+        }
         $input = $request->all();
-
-        $receiver = $this->receiverRepository->create($input);
-
-        return $this->sendResponse($receiver->toArray(), 'Receiver saved successfully');
+        $user = User::create([
+            'name' => $input['name'],
+            'mobile' => Str::random(4),
+            'password' => Hash::make('paswsword'),
+            'role' => 'reciever'
+        ]);
+        $receiver = Receiver::Create([
+            'age' => $input['age'],
+            'merchants_by' => Merchant::where('user_id', $request->user()->id)->first()->id,
+            'user_id' => $user->id
+        ]);
+        $data = $receiver->toArray();
+        $data['pin'] = $user->mobile;
+        $data['wallet'] = $user->balance;
+        return $this->sendResponse($data, 'Receiver saved successfully');
     }
 
     /**
@@ -225,7 +242,7 @@ class ReceiverAPIController extends AppBaseController
             return $this->sendError('Receiver not found');
         }
         if ($request->user()->isUser()) {
-            
+
             $user->deposit($amount);
 
             return $this->sendResponse(true, 'Money donated Sucessfully');

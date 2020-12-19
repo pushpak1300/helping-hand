@@ -24,6 +24,6 @@ class CreateReceiverAPIRequest extends APIRequest
      */
     public function rules()
     {
-        return Receiver::$rules;
+        return true;
     }
 }
