@@ -46,7 +46,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">+91</span>
                             </div>
-                            <input type="mobile" class="form-control {{ $errors->has('mobile')?'is-invalid':'' }}" name="mobile" value="{{ old('mobile') }}" placeholder="mobile">
+                            <input type="text" class="form-control {{ $errors->has('mobile')?'is-invalid':'' }}" name="mobile" value="{{ old('mobile') }}" placeholder="mobile">
                             @if ($errors->has('mobile'))
                                 <span class="invalid-feedback">
                                     <strong>{{ $errors->first('mobile') }}</strong>
