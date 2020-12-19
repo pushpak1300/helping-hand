@@ -1,6 +1,7 @@
 <template>
     <div>
-        <base-header type="gradient-dark" class="pb-6 pb-8 pt-5 pt-md-8">
+        <base-header type="gradient-default"  class="pb-6 pb-8 pt-5 pt-md-8">
+            <span class="mask bg-gradient-dark opacity-7"></span>
             <!-- Card stats -->
             <div class="row">
                 <div class="col-xl-6 col-lg-6">
@@ -33,7 +34,7 @@
                 </div> -->
                 <div class="col-xl-6 col-lg-6">
                     <stats-card title="Total Amount Donated"
-                                type="gradient-green"
+                                type="gradient-red"
                                 :sub-title="totalAmount"
                                 icon="ni ni-money-coins"
                                 class="mb-4 mb-xl-0"

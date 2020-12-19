@@ -1,8 +1,8 @@
 <template>
     <div>
-        <base-header class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+        <base-header  type="gradient-default" class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
                      style="min-height: 100px; background-size: cover; background-position: center top;">
-            <span class="mask bg-gradient-dark opacity-10"></span>
+            <span class="mask bg-gradient-dark opacity-7"></span>
             <div class="container-fluid d-flex align-items-center">
                 <!-- <div class="row">
                     <div class="col-lg-7 col-md-10">
