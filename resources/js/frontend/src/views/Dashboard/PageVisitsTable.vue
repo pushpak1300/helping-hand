@@ -3,7 +3,8 @@
     <div class="card-header border-0">
       <div class="row align-items-center">
         <div class="col">
-          <h3 class="mb-0">Donation History</h3>
+          <h3 class="mb-0" v-if="isUser">Donation History</h3>
+          <h3 class="mb-0" v-else>Redemption History</h3>
         </div>
         <!-- <div class="col text-right">
           <a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -15,9 +16,11 @@
       <base-table thead-classes="thead-light"
                   :data="donations">
         <template slot="columns">
-          <th>Donated to</th>
+          <th v-if="isUser">Donated to</th>
+          <th v-else>Redeemed from</th>
           <th>Amount</th>
-          <th>Donated at</th>
+          <th v-if="isUser">Donated at</th>
+          <th v-else>Redeemed at</th>
         </template>
 
         <template slot-scope="{row}">
@@ -77,6 +80,11 @@
           }
         ]
       }
+    },
+    computed: {
+        isUser() {
+            return localStorage.getItem("role") === "user";
+        }
     }
   }
 </script>

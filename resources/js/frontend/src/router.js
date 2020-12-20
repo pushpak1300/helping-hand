@@ -33,6 +33,11 @@ export default new Router({
           name: 'donate',
           component: () => import('./views/Donate.vue')
         },
+        {
+          path: '/generate',
+          name: 'generate',
+          component: () => import('./views/Generate.vue')
+        },
       ]
     },
     {

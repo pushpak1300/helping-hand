@@ -10,6 +10,16 @@
                         :sub-title="totalDonations"
                         icon="ni ni-active-40"
                         class="mb-4 mb-xl-0"
+                        v-if="isUser"
+                    >
+                    </stats-card>
+                    <stats-card
+                        title="Total Redeems"
+                        type="gradient-red"
+                        :sub-title="totalDonations"
+                        icon="ni ni-active-40"
+                        class="mb-4 mb-xl-0"
+                        v-else
                     >
                     </stats-card>
                 </div>
@@ -20,6 +30,16 @@
                         :sub-title="totalAmount"
                         icon="ni ni-money-coins"
                         class="mb-4 mb-xl-0"
+                        v-if="isUser"
+                    >
+                    </stats-card>
+                    <stats-card
+                        title="Total Amount Redeemed"
+                        type="gradient-red"
+                        :sub-title="totalAmount"
+                        icon="ni ni-money-coins"
+                        class="mb-4 mb-xl-0"
+                        v-else
                     >
                     </stats-card>
                 </div>
@@ -34,7 +54,8 @@
                                 <h6 class="text-uppercase text-muted ls-1 mb-1">
                                     Performance
                                 </h6>
-                                <h5 class="h3 mb-0">Total donations</h5>
+                                <h5 class="h3 mb-0" v-if="isUser">Total donations</h5>
+                                <h5 class="h3 mb-0" v-else>Total Redeems</h5>
                             </div>
                         </div>
 
@@ -123,6 +144,11 @@ export default {
                 sum += parseFloat(donations[index].amount);
             }
             return sum;
+        }
+    },
+    computed: {
+        isUser() {
+            return localStorage.getItem("role") === "user";
         }
     },
     mounted() {
