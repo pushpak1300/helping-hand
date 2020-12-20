@@ -89,6 +89,7 @@
       logoutUser() {
         User.logout();
         localStorage.removeItem('token');
+        localStorage.removeItem('role');
         this.$router.push({ name: "login" });
       }
     },

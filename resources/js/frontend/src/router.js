@@ -33,6 +33,11 @@ export default new Router({
           name: 'donate',
           component: () => import('./views/Donate.vue')
         },
+        {
+          path: 'about-us',
+          name: 'payment',
+          component: () => import('./views/Payment.vue')
+        },
       ]
     },
     {
