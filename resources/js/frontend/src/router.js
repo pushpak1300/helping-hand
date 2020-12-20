@@ -38,6 +38,11 @@ export default new Router({
           name: 'payment',
           component: () => import('./views/Payment.vue')
         },
+        {
+          path: '/generate',
+          name: 'generate',
+          component: () => import('./views/Generate.vue')
+        },
       ]
     },
     {

@@ -37,28 +37,31 @@
                                 <div class="h3 font-weight-300 mt-0" >
                                    {{ profile.city }}
                                 </div>
-                                <div class="h5 mt-3 mb-0">
+                                <div class="h3 mt-3">
                                     Created by
                                 </div>
                                 <div v-if="profile.shopName">
                                     {{ profile.shopName }}
                                 </div>
-                                <div class="h3 mt-0"> {{ profile.city }}
+                                <div>
+                                    {{ profile.city }}
                                 </div>
-                                <div v-if="profile.balance">
-                                    <i class="ni education_hat mr-2"></i
-                                    >{{ profile.balance }}
+                                <div class="h3 mt-3" v-if="!isUser">
+                                    Balance: ₹ {{ profile.wallet }}
                                 </div>
-                                <vue-qrcode
-                                    v-if="profile.id"
-                                    :value="profile.id + ''"
-                                /><br />
                                 <button
                                     v-if="isUser"
-                                    class="btn btn-lg btn-primary text-lg"
+                                    class="btn btn-lg btn-primary text-lg mt-3"
                                     @click="$router.push({ name: 'payment', params: { id: profile.id } })"
                                 >
                                     Donate
+                                </button>
+                                <button
+                                    v-else
+                                    class="btn btn-lg btn-primary text-lg mt-3"
+                                    @click="$router.push({ name: 'payment', params: { id: profile.id } })"
+                                >
+                                    Redeem
                                 </button>
                             </div>
                         </div>
@@ -69,7 +72,6 @@
     </div>
 </template>
 <script>
-import VueQrcode from "vue-qrcode";
 import Reciever from "../api/Reciever";
 export default {
     name: "user-profile",
@@ -78,12 +80,12 @@ export default {
             profile: null
         };
     },
-    components: {
-        VueQrcode
-    },
     computed: {
         isUser() {
             return localStorage.getItem("role") === "user";
+        },
+        isMerchant() {
+            return localStorage.getItem("role") === "merchant";
         }
     },
     mounted() {

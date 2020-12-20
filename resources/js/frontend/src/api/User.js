@@ -10,6 +10,8 @@ export default {
   },
 
   logout() {
+    localStorage.removeItem('role');
+    localStorage.removeItem('token');
     return Api().post("/logout");
   },
 
@@ -19,5 +21,13 @@ export default {
 
   getDashboard() {
     return Api().get("/dashboard");
+  },
+
+  transferMoney(id, form) {
+    return Api().post("/recievers/" +id, form);
+  },
+
+  generateQR(form) {
+    return Api().post("/recievers", form);
   }
 };
