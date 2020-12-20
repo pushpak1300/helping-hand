@@ -8,6 +8,7 @@ use App\Models\Receiver;
 use App\Repositories\ReceiverRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Dealings;
 use App\Models\Merchant;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -244,14 +245,24 @@ class ReceiverAPIController extends AppBaseController
         if ($request->user()->isUser()) {
 
             $user->deposit($amount);
-
+            Dealings::create([
+                'reciever_id' => $user->id,
+                'user_or_merchant_id' => $request->user()->id,
+                'amount' => $amount,
+                'type' => 'donation'
+            ]);
             return $this->sendResponse(true, 'Money donated Sucessfully');
         }
         if ($user->balance < $amount) {
             return $this->sendError('Insuffiecient Balance', 200);
         }
         $user->withdraw($amount);
-
+        Dealings::create([
+            'reciever_id' => $user->id,
+            'user_or_merchant_id' => $request->user()->id,
+            'amount' => $amount,
+            'type' => 'order'
+        ]);
         return $this->sendResponse($user->toArray(), 'Money withdraw Sucessfully');
     }
 

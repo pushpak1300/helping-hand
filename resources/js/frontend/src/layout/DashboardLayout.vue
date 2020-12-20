@@ -15,8 +15,18 @@
                 />
 
                 <sidebar-item
+                    v-if="isUser"
                     :link="{
                         name: 'Donate',
+                        icon: 'ni ni-shop text-default',
+                        path: '/donate'
+                    }"
+                />
+
+                <sidebar-item
+                    v-if="!isUser"
+                    :link="{
+                        name: 'Redeem',
                         icon: 'ni ni-shop text-default',
                         path: '/donate'
                     }"
@@ -55,6 +65,11 @@ export default {
         return {
             sidebarBackground: "vue" //vue|blue|orange|green|red|primary
         };
+    },
+    computed: {
+        isUser() {
+            return localStorage.getItem("role") === "user";
+        }
     },
     methods: {
         toggleSidebar() {

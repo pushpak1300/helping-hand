@@ -4,7 +4,7 @@
             <span class="mask bg-gradient-dark opacity-7"></span>
             <div class="row">
                 <div class="col-xl-6 col-lg-6">
-                    <stats-card
+                <stats-card
                         title="Total Donations"
                         type="gradient-red"
                         :sub-title="totalDonations"

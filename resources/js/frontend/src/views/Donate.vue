@@ -8,7 +8,7 @@
                 Do you want to continue?
             </div>
             <template slot="footer">
-                <base-button type="secondary" @click="modals.modal0 = false"
+                <base-button type="secondary" @click="modals.isVisible = false"
                     >Close</base-button
                 >
                 <base-button type="primary" @click="redirect">Yes,Continue</base-button>

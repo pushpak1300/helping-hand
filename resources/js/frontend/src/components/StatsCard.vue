@@ -4,7 +4,7 @@
 
       <div class="col">
         <slot>
-          <h5 class="card-title text-uppercase text-muted mb-0" v-if="title">{{title}}</h5>
+          <h5 class="card-title text-uppercase font-weight-bold mb-0" v-if="title">{{title}}</h5>
           <span class="h2 font-weight-bold mb-0" v-if="subTitle">{{subTitle}}</span>
         </slot>
       </div>
